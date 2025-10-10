@@ -1,3 +1,20 @@
+body {
+    margin: 0;
+}
+
 h1 {
     color:aqua
+}
+
+#map {
+    position:relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.map-overlay {
+    background-color: rgba(211, 211, 211, 0.75);
+    position: absolute;
+    pointer-events: auto;
+    z-index: 1000;
 }

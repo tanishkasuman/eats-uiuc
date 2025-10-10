@@ -4,15 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <!-- LeafletJS Links -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <!-- LeafletJS Links -->
     <title>Eats@UIUC</title>
 </head>
 <body>
-    <h1>This is our site</h1>
-    <p>Pellentesque habitant morbi tristique senectus et 
-        netus et malesuada fames ac turpis egestas.</p>
-    <textarea>Possible login?</textarea>
-    <br>
-        <button>Click me</button>
-
+    <div id="map">
+        <div id="content-overlay" class="map-overlay">
+            <h1>This is our site</h1>
+            <p>Pellentesque habitant morbi tristique senectus et 
+                netus et malesuada fames ac turpis egestas.</p>
+            <textarea>Possible login?</textarea>
+            <br>
+                <button>Click me</button>
+            </br>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
