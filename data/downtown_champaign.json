@@ -1,0 +1,538 @@
+[
+    {
+        "address": [
+            "118 N. Neil St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/672e0ec5-4ff3-4174-89b4-497d80d6bb50.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Aroma Cafe",
+        "phone_number": [
+            "217-356-3200"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "34 E. Main St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/b13a2c9b-3848-4a7d-bb04-558e3bfca5a4.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Barrelhouse 34",
+        "phone_number": [
+            "217-239-4677"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "419 N. Neil St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/3f0187ca-d567-404f-b551-0ee26d85073f.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Bentley's Pub",
+        "phone_number": [
+            "217-359-7977"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "320 N. Chestnut St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/6bb9e342-2de5-4c69-8658-1bafe1fdb336.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Black Dog Smoke & Ale House",
+        "phone_number": [
+            "217-954-0465"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "120 N. Neil St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/21e170d5-9da4-476e-b209-65c0c430ced9.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Blind Pig Brewery",
+        "phone_number": [
+            "217-398-5133"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "15 E. University Ave. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/9f9c0dd0-8c6a-436e-aef4-3062d0488179.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Brass Rail",
+        "phone_number": [
+            "217-352-7512"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "109 N. Walnut St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/995dc2ed-1174-4d37-b91c-b2563ea1dc80.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Cafe Kopi",
+        "phone_number": [
+            "217-359-4266"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "340 N. Neil St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/39f650fa-3ce9-4213-9044-53d7396addc1.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Collective Pour",
+        "phone_number": [
+            "217-607-5292"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "24 E Columbia Ave Champaign, IL 61820 (217) 352-9713"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/c1e5f11a-1a26-4011-8047-ae1ee50cd52f.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Columbia Street Roastery",
+        "phone_number": [],
+        "website": []
+    },
+    {
+        "address": [
+            "6 Taylor St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/58df36df-89d1-4d38-9d0b-177c7ec53733.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Cowboy Monkey",
+        "phone_number": [
+            "217-398-2688"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "114 N. Walnut St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/a111d3bd-4ac2-4441-8f13-090cfe8a0483.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Cream & Flutter",
+        "phone_number": [
+            "217-355-5400"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "116 N. Walnut St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/7b0320f0-e306-40ee-93a9-09fba828f9a5.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Crudo Wine Bar",
+        "phone_number": [
+            "217-954-1448"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "301 N. Neil St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/7903bebd-7b78-4fd8-9331-c4205955d2b4.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Destihl Restaurant & Brew Works",
+        "phone_number": [
+            "217-356-0301"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "106 N. Walnut St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/a22c9fe2-fdce-47a8-bde9-cc93faafcb59.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Esquire Lounge",
+        "phone_number": [
+            "217-398-5858"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "117 N. Walnut St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/a3b07c86-1058-4a4d-8a81-7ad720b1002f.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Farren's Pub & Eatery",
+        "phone_number": [
+            "217-359-6977"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            ""
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/cfa222c1-89c9-4a10-add8-d94d7c9ab933.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Fernando's",
+        "phone_number": [
+            "217-255-0210"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "201 N. Neil St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/c0d0e7e4-d967-4fad-8502-fa9c656666d2.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Hamilton Walker's",
+        "phone_number": [
+            "217-350-0363"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "134 W. Church St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/f10681bd-165c-4e97-8797-c403fe4fe30d.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Himalayan Chimney",
+        "phone_number": [
+            "217-552-1834"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "39 Main St."
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/122083b1-4f73-4f7c-8a99-06602ac8305f.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Jupiter's Pizzeria and Billiards",
+        "phone_number": [
+            "217-398-5988"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "1 E. Main St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/388f4fbd-f8ee-4243-8e71-555c2f443075.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Ko Fusion",
+        "phone_number": [
+            "217-531-1166"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "6 E. Columbia Ave. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/6b97a2a2-ddea-4918-86af-0845c22a6384.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Kohinoor Indian Restaurant & Lounge",
+        "phone_number": [
+            "217-552-1384"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "100 N. Chestnut Champaign, IL 61820 (217) 355-3611"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/58e1105d-b9fa-4ba6-a210-fa0db90ebf92.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Maize at the Station",
+        "phone_number": [],
+        "website": []
+    },
+    {
+        "address": [
+            "301 N. Neil Street Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/f2c6a6d4-241a-4569-b92a-774a00d6dcc9.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Miga",
+        "phone_number": [
+            "217-398-1020"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "202 N. Neil St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/823b8179-77bf-404e-b30f-24d36b56f0aa.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Nando Milano Trattoria",
+        "phone_number": [
+            "217-954-1439"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "116 N. Neil St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/adceec32-1572-4994-a2de-3eb0882bcf2e.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Pekara Bakery & Bistro",
+        "phone_number": [
+            "217-359-4500"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "206 N. Randolph St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/05ac9afe-f943-4569-af34-1f0223d1ac3f.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Peking Garden",
+        "phone_number": [
+            "217-355-8888"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "10 E. Chester St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/7a7d13cc-d40d-4b91-a370-c018b534fe63.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Pizzeria Antica",
+        "phone_number": [
+            "217-530-4137"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "40 E. University Ave. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/a9363617-ae67-4394-b1c5-d504c22855b4.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Pour Bros. Craft Taproom",
+        "phone_number": [
+            "217-954-1881"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "110 N. Neil St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/e85d74b6-fb15-4d9f-aa13-41e58e0bbac8.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Quality Bar",
+        "phone_number": [
+            "217-359-3425"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "115 N. Walnut St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/e332bf06-a326-43ec-a00d-f36fbef9cfcc.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Sam's Cafe",
+        "phone_number": [
+            "217-352-7102"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "32 E. Chester St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/b46c13b9-5f71-47c4-8a37-3836f3b189ca.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Seven Saints",
+        "phone_number": [
+            "217-351-7775"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "320 N. Neil St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/3ae59f37-7c5f-4c54-9c2c-82f68bd0ce00.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Soma",
+        "phone_number": [
+            "217-359-7662"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "415 N. Neil St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/6036918c-14ef-43c5-af6a-c9c27176b075.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Sticky Rice",
+        "phone_number": [
+            "217-954-1929"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "132 W. Church St Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/ab906610-a102-47fb-b949-4d932f03f42b.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Sushi Kame",
+        "phone_number": [
+            "217-356-3366"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "512 E Green St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/3499a201-f148-4636-8cb0-4bd430bbc83f.jfif",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Taipei Caf\u00e9",
+        "phone_number": [
+            "312-799-0784"
+        ],
+        "website": []
+    },
+    {
+        "address": [
+            "211 N. Neil St. Champaign, IL 61820"
+        ],
+        "cuisine": "",
+        "img_url": "https://files.idss.com/C245/10a8ce78-2dd2-46eb-a0dc-8bfa22326a34/6c973548-d6e4-43bd-9852-6fc3d17b432e.jpg",
+        "location_areas": [
+            "Downtown Champaign"
+        ],
+        "name": "Watson's Shack & Rail",
+        "phone_number": [
+            "217-607-0168"
+        ],
+        "website": []
+    }
+]
