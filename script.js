@@ -32,7 +32,7 @@ function dataCheck(locationData, index, locIndex) {
 
 //Fetch restaurants.json data and turn it into markers
 function fetchData(data) {
-    count = 0
+    var count = 0
     var markers = L.markerClusterGroup();
     data.forEach(element => {
         for (i = 0; i < element.locations.length; i++) {
@@ -43,8 +43,11 @@ function fetchData(data) {
             locationPhoneNum = element.locations[i].phoneNumber;
             locationRating = element.locations[i].rating;
 
+            //Skip anything without coordinates
+            if (element.locations[i].coordinate === undefined) {
+                continue;
+            }
             dataCheck(locationName, count, i);
-            dataCheck(locationData, count, i);
             dataCheck(locationAddr, count, i);
             dataCheck(locationArea, count, i);
             dataCheck(locationPhoneNum, count, i);
@@ -61,7 +64,7 @@ function fetchData(data) {
                     Rating: ${locationRating}/5 <br>
                 </p
             `;
-
+            
             lat = locationData.lat;
             lng = locationData.lng;
             var marker = L.marker([lat, lng]).bindPopup(popupContent);
