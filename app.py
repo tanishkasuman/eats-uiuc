@@ -9,6 +9,7 @@ from pandas import json_normalize
 app = Flask(__name__)
 app.secret_key = "eats@uiuc"
 
+@app.route("", methods=["GET", "POST"])
 @app.route("/", methods=["GET", "POST"])
 def home():
     if request.method == "POST":
@@ -33,7 +34,7 @@ def cuisine():
 
         # Convert to a JSON-serializable list of dicts (one dict per row)
         display_list = filtered_df.to_dict(orient="records")
-        
+
         return render_template("cuisine.html", display=display_list)
     else:
         return redirect(url_for("home"))
