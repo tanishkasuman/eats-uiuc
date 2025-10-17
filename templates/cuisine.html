@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Cuisine Page </title>
+</head>
+<body>
+    {% set rows = display if display is defined else session.get('display', []) %}
+    {% if rows %}
+        <ul>
+        {% for row in rows %}
+            <li>
+                <strong>{{ row.get('name', 'Unknown') }}</strong><br>
+                {{ row.get('address', '') }} {% if row.get('area') %} - {{ row.get('area') }}{% endif %}<br>
+                Rating: {{ row.get('rating', 'N/A') }} | Price: {{ row.get('price', 'N/A') }}<br>
+                Coordinates: {{ row.get('coordinate.lat', '') }}, {{ row.get('coordinate.lng', '') }}<br>
+                Website: <a href="{{ row.get('website', '#') }}">{{ row.get('website', '') }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No restaurants found for this cuisine.</p>
+    {% endif %}
+</body>
+</html>
