@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 var map = L.map('map', {
     zoomControl: false
 }).setView([40.0985, -88.2291], 13);
@@ -40,13 +41,13 @@ function fetchData(data) {
     var count = 0
     var markers = L.markerClusterGroup();
     data.forEach(element => {
-        for (i = 0; i < element.locations.length; i++) {
-            locationName = element.name;
-            locationData = element.locations[i].coordinate;
-            locationAddr = element.locations[i].address;
-            locationArea = element.locations[i].area;
-            locationPhoneNum = element.locations[i].phoneNumber;
-            locationRating = element.locations[i].rating;
+        for (var i = 0; i < element.locations.length; i++) {
+            var locationName = element.name;
+            var locationData = element.locations[i].coordinate;
+            var locationAddr = element.locations[i].address;
+            var locationArea = element.locations[i].area;
+            var locationPhoneNum = element.locations[i].phoneNumber;
+            var locationRating = element.locations[i].rating;
 
             //Skip anything without coordinates
             if (element.locations[i].coordinate === undefined) {
@@ -58,7 +59,7 @@ function fetchData(data) {
             dataCheck(locationPhoneNum, count, i);
             dataCheck(locationRating, count, i);
 
-            popupContent = `
+            var popupContent = `
                 <b>
                     ${locationName}
                 </b>
@@ -70,8 +71,8 @@ function fetchData(data) {
                 </p
             `;
             
-            lat = locationData.lat;
-            lng = locationData.lng;
+            var lat = locationData.lat;
+            var lng = locationData.lng;
             var marker = L.marker([lat, lng]).bindPopup(popupContent);
 
             markers.addLayer(marker);
