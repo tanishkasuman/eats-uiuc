@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-var markers = L.markerClusterGroup()
+var markers = L.markerClusterGroup();
 
 var map = L.map('map', {
     zoomControl: false
@@ -26,10 +26,6 @@ overlay.addEventListener('mouseleave', function() {
 });
 
 function onEachFeature(feature, layer) {
-    if (feature.geometry.type == "MultiPolygon" || feature.geometry.type == "Polygon") {
-        markers.addLayer(L.marker(layer.getBounds().getCenter()).bindPopup("test"));
-    }
-
     var properties = feature.properties;
     var popupContent = "";
 
@@ -41,24 +37,27 @@ function onEachFeature(feature, layer) {
         }
     }
 
+    if (feature.geometry.type == "MultiPolygon" || feature.geometry.type == "Polygon") {
+        markers.addLayer(L.marker(layer.getBounds().getCenter()).bindPopup(popupContent));
+    }
+
     layer.bindPopup(popupContent);
 }
 
 function fetchData(data) {
-    console.log(data)
     var geoLayer = L.geoJSON(data, {
         onEachFeature: onEachFeature
-    })
+    });
 
     geoLayer.eachLayer(function(layer) {
         if (layer.feature.geometry.type == "MultiPolygon" || layer.feature.geometry.type == "Polygon") {
-            geoLayer.removeLayer(layer)
+            geoLayer.removeLayer(layer);
         }
-    })
+    });
 
-    markers.addLayer(geoLayer)
+    markers.addLayer(geoLayer);
 
-    map.addLayer(markers)
+    map.addLayer(markers);
 }
 
 fetch('/data/uiuc-geo-data.geojson')
