@@ -25,13 +25,32 @@ overlay.addEventListener('mouseleave', function() {
   map.dragging.enable(); // Enable map dragging
 });
 
+// Set of unique feature tags
+//var uniqueFeatures = new Set();
+
+/*
+Keep:
+addr:*
+name:
+cuisine:
+*/
+
+var listedFeatures = ["addr", "name", "cuisine", "amenity"]
+
 function onEachFeature(feature, layer) {
     var properties = feature.properties;
+
+    // Debug: print unique feature tags
+    /*propertyKeys = Object.keys(properties);
+    propertyKeys.forEach(element => {
+        uniqueFeatures.add(element)
+    });*/
+
     var popupContent = "";
 
     if (properties) {
         for (var property in properties) {
-            if (Object.prototype.hasOwnProperty.call(properties, property)) {
+            if (Object.prototype.hasOwnProperty.call(properties, property) && listedFeatures.some(prefix => property.startsWith(prefix))) {
                 popupContent += "<b>" + property + ": " + properties[property] + "</b>" + "<br>";
             }
         }
@@ -48,7 +67,7 @@ function fetchData(data) {
     var geoLayer = L.geoJSON(data, {
         onEachFeature: onEachFeature
     });
-
+    //console.log(uniqueFeatures);
     geoLayer.eachLayer(function(layer) {
         if (layer.feature.geometry.type == "MultiPolygon" || layer.feature.geometry.type == "Polygon") {
             geoLayer.removeLayer(layer);
