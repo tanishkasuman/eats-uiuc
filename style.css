@@ -18,3 +18,11 @@ h1 {
     pointer-events: auto;
     z-index: 1000;
 }
+
+.save-btn .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0;
+}
+
+.save-btn.saved .material-symbols-outlined {
+    font-variation-settings: 'FILL' 1;   
+}

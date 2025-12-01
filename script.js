@@ -1,3 +1,9 @@
+let savedRestaurants = [];
+const savedData = localStorage.getItem('savedRestaurants');
+if (savedData) {
+    savedRestaurants = JSON.parse(savedData);
+}
+
 var map = L.map('map', {
     zoomControl: false
 }).setView([40.0985, -88.2291], 13);
@@ -32,16 +38,16 @@ function dataCheck(locationData, index, locIndex) {
 
 //Fetch restaurants.json data and turn it into markers
 function fetchData(data) {
-    count = 0
+    count = 0;
     var markers = L.markerClusterGroup();
     data.forEach(element => {
-        for (i = 0; i < element.locations.length; i++) {
-            locationName = element.name;
-            locationData = element.locations[i].coordinate;
-            locationAddr = element.locations[i].address;
-            locationArea = element.locations[i].area;
-            locationPhoneNum = element.locations[i].phoneNumber;
-            locationRating = element.locations[i].rating;
+        for (let i = 0; i < element.locations.length; i++) {
+            let locationName = element.name;
+            let locationData = element.locations[i].coordinate;
+            let locationAddr = element.locations[i].address;
+            let locationArea = element.locations[i].area;
+            let locationPhoneNum = element.locations[i].phoneNumber;
+            let locationRating = element.locations[i].rating;
 
             dataCheck(locationName, count, i);
             dataCheck(locationData, count, i);
@@ -50,37 +56,57 @@ function fetchData(data) {
             dataCheck(locationPhoneNum, count, i);
             dataCheck(locationRating, count, i);
 
-            popupContent = `
+            let restaurantId = locationName + "-" + locationArea;
+            let isSaved = savedRestaurants.some(r => r.id === restaurantId);
+
+            let popupContent = `
                 <b>
                     ${locationName}
                 </b>
+                <button class="save-btn" data-restaurant-id="${restaurantId}" data-name="${locationName}" data-area="${locationArea}" data-addr="${locationAddr}" data-phone-number="${locationPhoneNum}" data-rating="${locationRating}" data-saved="${isSaved ? 'true' : 'false'}">
+                    <span class="material-symbols-outlined">favorite</span>
+                </button>
                 <p>
                     Address: ${locationAddr} <br>
                     Area: ${locationArea} <br>
                     Phone Number: ${locationPhoneNum} <br>
                     Rating: ${locationRating}/5 <br>
-                </p
+                </p>
             `;
 
-            lat = locationData.lat;
-            lng = locationData.lng;
+            let lat = locationData.lat;
+            let lng = locationData.lng;
             var marker = L.marker([lat, lng]).bindPopup(popupContent);
-
-            markers.addLayer(marker);
-
-            //Places with multiple locations (e.x. Espresso Royale) don't work correctly with mouseover
-            /*marker.on('mouseover', function() {
-                marker.openPopup();
+            
+            marker.on('popupopen', function() {
+                const btn = document.querySelector('.leaflet-popup .save-btn');
+                if (btn) {
+                    btn.addEventListener('click', function() {
+                        const restaurantId = btn.getAttribute('data-restaurant-id');
+                        if (btn.classList.contains('saved')) {
+                            savedRestaurants = savedRestaurants.filter(r => r.id !== restaurantId);
+                            btn.classList.remove('saved');
+                        } else {
+                            const restaurantData = {
+                                id: this.dataset.restaurantId,
+                                name: this.dataset.locationName,
+                                area: this.dataset.locationArea,
+                                address: this.dataset.locationAddr,
+                                phoneNumber: this.dataset.locationPhoneNum,
+                                rating: this.dataset.locationRating
+                            };
+                            savedRestaurants.push(restaurantData);
+                            btn.classList.add('saved');
+                        }
+                        localStorage.setItem('savedRestaurants', JSON.stringify(savedRestaurants));
+                    });
+                }
             });
-            marker.on('mouseout', function() {
-                marker.closePopup();
-            });*/
+            markers.addLayer(marker);
         }
         count++;
-
     });
-
-    map.addLayer(markers)
+    map.addLayer(markers);
 }
 
 fetch('/data/restaurants.json')
