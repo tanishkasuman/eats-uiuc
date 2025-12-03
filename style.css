@@ -1,0 +1,72 @@
+#logo {
+  position: absolute;       
+  top: 10px;              
+  left: 15%;              
+  transform: translateX(-50%); 
+  width: 200px;
+  z-index: 10;    
+}
+
+.heading {
+  width: 100%;
+  padding: 1rem 2rem;
+  height: 70px; 
+  background: white;
+  border-bottom: 2px solid black;
+  display: flex;
+  gap: 25px;
+  justify-content: center; 
+  align-items: center; 
+}
+
+/* pushes to side, could replace */
+.button {
+   border: none;
+   padding: 15px 50px;    
+   font-size: 1.7rem;
+   border-radius: 35px;
+   display: flex;
+   justify-content: center;
+   align-items: center;   
+   font-family: "ABeeZee", sans-serif;
+   font-weight: 400;
+   font-style: normal;
+   cursor: pointer;
+   transition: background-color 0.5s, transform 0.2s;
+}
+
+.spacer {
+  width: 150px;
+}
+
+#search{ 
+  background: #F19C79;
+  color: white;
+}
+
+#explore{ 
+  background: #CBDFBD;
+  color: #484755;
+}
+
+#surprise{
+  background: #D4E09B;
+  color: #484755;
+}
+
+#contact{
+  background: #484755;
+  color: white;
+}
+
+.body {
+  min-height: calc(100vh - 70px); 
+  padding: 2rem;                  
+  box-sizing: border-box; 
+  background-image: url('https://www.dropbox.com/scl/fi/ai2budth681cxiwsftb7p/map.png?rlkey=me6qxjnchnupjfpc652l1auev&raw=1');
+}
+
+.button:hover {
+  opacity: 0.5;
+  transform: scale(1.05);
+}
