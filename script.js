@@ -14,17 +14,6 @@ L.control.zoom({
     position: 'topright'
 }).addTo(map);
 
-//Disable map dragging when mouse is over UI
-var overlay = document.getElementById("content-overlay");
-
-overlay.addEventListener('mouseenter', function() {
-  map.dragging.disable(); // Disable map dragging
-});
-
-overlay.addEventListener('mouseleave', function() {
-  map.dragging.enable(); // Enable map dragging
-});
-
 //---DEBUG---
 // Set of unique feature tags
 //var uniqueFeatures = new Set();
