@@ -83,3 +83,10 @@ body {
   opacity: 0.5;
   transform: scale(1.05);
 }
+
+a.button {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

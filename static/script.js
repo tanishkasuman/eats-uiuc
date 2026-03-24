@@ -127,7 +127,7 @@ function fetchData(data) {
     map.addLayer(markers);
 }
 
-fetch('/data/uiuc-geo-data.geojson')
+fetch('/static/data/uiuc-geo-data.geojson')
     .then(response => response.json())
     .then(data => fetchData(data))
     .catch(error => console.log(error));
