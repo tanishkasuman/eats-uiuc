@@ -7,7 +7,9 @@ To setup the project, run these commands:
 ```bash
 npm install
 python -m venv .venv
-.venv/Scripts/activate # Windows, Mac might be different
+.venv/Scripts/activate # Windows
+# OR
+source .venv/bin/activate # macOS
 pip install -r requirements.txt
 ```
 Then create a .env file in the root directory with these lines:
