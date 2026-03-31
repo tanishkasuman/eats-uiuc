@@ -26,6 +26,10 @@ def explore():
 def contact():
     return render_template("contact.html")
 
+@app.route("/surprise")
+def surprise():
+    return render_template("surprise.html")
+
 
 if __name__ == "__main__":
     debug = os.environ.get("FLASK_DEBUG", "false").lower() == "true"
