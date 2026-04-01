@@ -1,6 +1,8 @@
 import os
 from dotenv import load_dotenv
 from flask import Flask, render_template
+import json
+import random
 
 load_dotenv()
 
@@ -28,7 +30,11 @@ def contact():
 
 @app.route("/surprise")
 def surprise():
-    return render_template("surprise.html")
+    with open("static/data/restaurants.json", 'r') as file:
+        data = json.load(file)
+        index = random.randrange(len(data))
+        restaurant_dict = data[index]
+    return render_template("surprise.html", data=restaurant_dict)
 
 
 if __name__ == "__main__":

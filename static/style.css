@@ -90,3 +90,8 @@ a.button {
   justify-content: center;
   align-items: center;
 }
+
+.text {
+  text-align: center;
+  font-family: "ABeeZee", sans-serif;
+}
