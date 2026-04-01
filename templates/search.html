@@ -1,8 +1,148 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="body">
-    <h1>Search</h1>
-    <p>Coming soon.</p>
+<div id="search-container">
+    <form id="search-form" method="GET" action="/search">
+        <input type="text" id="search-input" name="query" placeholder="Search for a restaurant...">
+        <button type="submit" id="search-submit">Search</button>
+    </form>
+
+    <div id="search-status"></div>
+    <div id="search-results"></div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+<script>
+    const listedFeatures = ["name", "cuisine", "amenity"];
+
+    const addressOrder = [
+        "housename",
+        "streetname",
+        "unit",
+        "suite",
+        "city",
+        "county",
+        "state",
+        "postcode",
+        "country"
+    ];
+
+    function formatLabel(key) {
+        var label = key.replace(/_/g, " ");
+        return label.charAt(0).toUpperCase() + label.slice(1);
+    }
+
+    function formatValue(raw) {
+        return raw.split(";").map(function(part) {
+            part = part.trim().replace(/_/g, " ");
+            return part.charAt(0).toUpperCase() + part.slice(1);
+        }).join(", ");
+    }
+
+    function buildAddress(properties) {
+        var addressTags = {};
+
+        for (var key in properties) {
+            if (Object.prototype.hasOwnProperty.call(properties, key) && key.startsWith("addr:")) {
+                var part = key.split(":")[1];
+                addressTags[part] = properties[key];
+            }
+        }
+
+        if (addressTags.housenumber || addressTags.street) {
+            addressTags.streetname = [addressTags.housenumber, addressTags.street].filter(Boolean).join(" ");
+        }
+        if (addressTags.suite) {
+            addressTags.suite = "STE " + addressTags.suite;
+        }
+        if (addressTags.unit
+            && !addressTags.unit.toLowerCase().includes("suite")
+            && !addressTags.unit.toLowerCase().includes("ste")) {
+            addressTags.unit = "UNIT " + addressTags.unit;
+        }
+
+        var parts = addressOrder.map(function(k) { return addressTags[k]; }).filter(Boolean);
+        return parts.length > 0 ? parts.join(", ") : "N/A";
+    }
+
+    function renderResult(feature) {
+        var props = feature.properties;
+        var id = props["@id"];
+        var address = buildAddress(props);
+
+        var html = '<div class="search-result">';
+
+        for (var key in props) {
+            if (Object.prototype.hasOwnProperty.call(props, key)
+                && listedFeatures.some(function(prefix) { return key.startsWith(prefix); })) {
+                html += "<b>" + formatLabel(key) + ": " + formatValue(props[key]) + "</b><br>";
+            }
+        }
+
+        html += "<b>Address: " + address + "</b><br>";
+
+        if (id) {
+            html += '<a class="result-map-link" href="/?place=' + encodeURIComponent(id) + '">View on map</a>';
+        }
+
+        html += "</div>";
+        return html;
+    }
+
+    function buildSearchIndex(features) {
+        return features.map(function(feature) {
+            var props = feature.properties;
+            return {
+                id: props["@id"],
+                name: props.name || "",
+                cuisine: props.cuisine || "",
+                amenity: props.amenity || "",
+                address: buildAddress(props),
+                feature: feature
+            };
+        });
+    }
+
+    function runSearch(query, features) {
+        var statusEl = document.getElementById("search-status");
+        var resultsEl = document.getElementById("search-results");
+
+        var index = buildSearchIndex(features);
+        var fuse = new Fuse(index, {
+            keys: ["name", "cuisine", "amenity", "address"],
+            threshold: 0.4,
+            ignoreLocation: true
+        });
+
+        var results = fuse.search(query);
+        resultsEl.innerHTML = "";
+
+        if (results.length === 0) {
+            statusEl.textContent = 'No results for "' + query + '".';
+            return;
+        }
+
+        statusEl.textContent = results.length + ' result' + (results.length === 1 ? '' : 's') + ' for "' + query + '".';
+        results.forEach(function(result) {
+            resultsEl.innerHTML += renderResult(result.item.feature);
+        });
+    }
+
+    // Pre-fill input and run search from URL param
+    var params = new URLSearchParams(window.location.search);
+    var query = params.get("query");
+
+    if (query) {
+        document.getElementById("search-input").value = query;
+        fetch("/static/data/uiuc-geo-data.geojson")
+            .then(function(r) { return r.json(); })
+            .then(function(data) { runSearch(query, data.features); })
+            .catch(function(err) {
+                document.getElementById("search-status").textContent = "Failed to load data.";
+                console.error(err);
+            });
+    }
+</script>
 {% endblock %}

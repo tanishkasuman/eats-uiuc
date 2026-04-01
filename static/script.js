@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 var markers = L.markerClusterGroup();
+var markerIndex = {};  // maps @id string → Leaflet marker instance
 
 var map = L.map('map', {
     zoomControl: false
@@ -7,12 +8,40 @@ var map = L.map('map', {
 
 L.tileLayer('https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png', {
     maxZoom: 21,
-    attribution: '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>', 
+    attribution: '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
 }).addTo(map);
 
 L.control.zoom({
     position: 'topright'
 }).addTo(map);
+
+// Copy Share Link button handler (delegated)
+document.getElementById('map').addEventListener('click', function(e) {
+    var btn = e.target.closest('.share-link-btn');
+    if (!btn) return;
+    var id = decodeURIComponent(btn.dataset.id);
+    var url = window.location.origin + window.location.pathname + '?place=' + encodeURIComponent(id);
+    navigator.clipboard.writeText(url).then(function() {
+        var original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(function() { btn.textContent = original; }, 1500);
+    }).catch(function() {
+        window.prompt('Copy this link:', url);
+    });
+});
+
+// Update URL bar when a popup opens
+markers.on('popupopen', function(e) {
+    var btn = e.popup.getElement().querySelector('.share-link-btn');
+    if (!btn) return;
+    var id = decodeURIComponent(btn.dataset.id);
+    if (id) { history.replaceState(null, '', '?place=' + encodeURIComponent(id)); }
+});
+
+// Clear URL when clicking empty map space
+map.on('click', function() {
+    history.replaceState(null, '', window.location.pathname);
+});
 
 //---DEBUG---
 // Set of unique feature tags
@@ -26,9 +55,9 @@ name:
 cuisine:
 */
 
-const listedFeatures = ["name", "cuisine", "amenity"]
+const listedFeatures = ["name", "cuisine", "amenity"];
 
-const adderessOrder = [
+const addressOrder = [
     "housename",
     "streetname",
     "unit",
@@ -40,72 +69,98 @@ const adderessOrder = [
     "country"
 ];
 
-function onEachFeature(feature, layer) {
+function formatLabel(key) {
+    var label = key.replace(/_/g, " ");
+    return label.charAt(0).toUpperCase() + label.slice(1);
+}
+
+function formatValue(raw) {
+    return raw.split(";").map(function(part) {
+        part = part.trim().replace(/_/g, " ");
+        return part.charAt(0).toUpperCase() + part.slice(1);
+    }).join(", ");
+}
+
+function buildAddress(properties) {
+    var addressTags = {};
+
+    for (var key in properties) {
+        if (Object.prototype.hasOwnProperty.call(properties, key) && key.startsWith("addr:")) {
+            addressTags[key.split(":")[1]] = properties[key];
+        }
+    }
+
+    if (addressTags.housenumber || addressTags.street) {
+        addressTags.streetname = [addressTags.housenumber, addressTags.street].filter(Boolean).join(" ");
+    }
+    if (addressTags.suite) {
+        addressTags.suite = "STE " + addressTags.suite;
+    }
+    if (addressTags.unit
+        && !addressTags.unit.toLowerCase().includes("suite")
+        && !addressTags.unit.toLowerCase().includes("ste")) {
+        addressTags.unit = "UNIT " + addressTags.unit;
+    }
+
+    if (Object.keys(addressTags).length === 0) return "N/A";
+    return addressOrder.map(function(k) { return addressTags[k]; }).filter(Boolean).join(", ");
+}
+
+function buildPopupContent(feature) {
     var properties = feature.properties;
+    var featureId = properties["@id"];
+    var content = "";
+
+    for (var key in properties) {
+        if (Object.prototype.hasOwnProperty.call(properties, key)
+            && listedFeatures.some(function(prefix) { return key.startsWith(prefix); })) {
+            content += "<b>" + formatLabel(key) + ": " + formatValue(properties[key]) + "</b><br>";
+        }
+    }
+
+    content += "<b>Address: " + buildAddress(properties) + "</b><br>";
+
+    var encodedId = encodeURIComponent(featureId || "");
+    content += '<br><button class="share-link-btn" data-id="' + encodedId + '" '
+        + 'style="margin-top:6px;padding:4px 10px;cursor:pointer;font-size:0.85em;">'
+        + 'Copy Share Link</button>';
+
+    return content;
+}
+
+function onEachFeature(feature, layer) {
+    var featureId = feature.properties["@id"];
 
     //---DEBUG---
     //Print unique feature tags
-    //propertyKeys = Object.keys(properties);
+    //propertyKeys = Object.keys(feature.properties);
     //propertyKeys.forEach(element => {
     //    uniqueFeatures.add(element)
     //});
     //---DEBUG---
 
-    var addressTags = {};
-
-    var popupContent = "";
-
-    // Check if the feature has properties
-    if (properties) {
-        // Iterate through every property
-        for (var property in properties) {
-            // If property doesn't match with any listedFeatures, then don't add it to popup
-            // Exception: address tags (addr:*) don't get added until they are combnined
-            if (Object.prototype.hasOwnProperty.call(properties, property) && listedFeatures.some(prefix => property.startsWith(prefix))) {
-                popupContent += "<b>" + property + ": " + properties[property] + "</b>" + "<br>";
-            } else if (Object.prototype.hasOwnProperty.call(properties, property) && property.startsWith("addr")) {
-                // Create full address from available properties
-                if (property.startsWith("addr")) {
-                    var splitString = property.split(":");
-                    addressTags[splitString[1]] = properties[property];
-                }
-            }
-        }
-    }
-
-    // Add full address to popups
-    // Compound tag: streetname
-    if (Object.prototype.hasOwnProperty.call(addressTags, "housenumber") 
-        || Object.prototype.hasOwnProperty.call(addressTags, "street")) {
-        addressTags["streetname"] = [addressTags["housenumber"], addressTags["street"]].filter(Boolean).join(" ");
-    }
-
-    // Add "STE" prefix to addr:suite
-    if (Object.prototype.hasOwnProperty.call(addressTags, "suite")) {
-        addressTags["suite"] = "STE " + addressTags["suite"];
-    }
-
-    // Add "UNIT" prefix to addr:unit IF "ste" OR "suite" is not in the tag
-    if (Object.prototype.hasOwnProperty.call(addressTags, "unit") 
-        && !addressTags["unit"].toLowerCase().includes("suite") 
-        && !addressTags["unit"].toLowerCase().includes("ste")) {
-        addressTags["unit"] = "UNIT " + addressTags["unit"];
-    }
-    
-    var addressParts = adderessOrder.map(key => addressTags[key]).filter(Boolean).join(", ");
-
-    // If address is empty, add "N/A" to address bar
-    if (Object.keys(addressTags).length == 0) {
-        addressParts = "N/A";
-    }
-
-    popupContent += "<b>Address: " + addressParts + "</b>" + "<br>";
+    var popupContent = buildPopupContent(feature);
 
     if (feature.geometry.type == "MultiPolygon" || feature.geometry.type == "Polygon") {
-        markers.addLayer(L.marker(layer.getBounds().getCenter()).bindPopup(popupContent));
+        var centroidMarker = L.marker(layer.getBounds().getCenter()).bindPopup(popupContent);
+        markers.addLayer(centroidMarker);
+        if (featureId) { markerIndex[featureId] = centroidMarker; }
     }
 
     layer.bindPopup(popupContent);
+
+    if (feature.geometry.type !== "MultiPolygon" && feature.geometry.type !== "Polygon") {
+        if (featureId) { markerIndex[featureId] = layer; }
+    }
+}
+
+function handleDeepLink() {
+    var params = new URLSearchParams(window.location.search);
+    var place = params.get('place');
+    if (!place) return;
+    var marker = markerIndex[place];
+    if (!marker) { console.warn('Deep link target not found:', place); return; }
+    markers.zoomToShowLayer(marker, function() { marker.openPopup(); });
 }
 
 function fetchData(data) {
@@ -129,5 +184,5 @@ function fetchData(data) {
 
 fetch('/static/data/uiuc-geo-data.geojson')
     .then(response => response.json())
-    .then(data => fetchData(data))
+    .then(data => { fetchData(data); handleDeepLink(); })
     .catch(error => console.log(error));
