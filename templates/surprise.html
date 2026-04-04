@@ -7,5 +7,31 @@
     <p class="text"> Cuisine: {{ data["cuisine"] }} </p>
     <p class="text"> Location: {{ data["locations"][0]["address"] }} </p>
     <p class="text"> Rating: {{ data["locations"][0]["rating"] }} </p>
+    <button onclick="getLocation()">Get Location</button>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                console.log("Latitude:", position.coords.latitude);
+                console.log("Longitude:", position.coords.longitude);
+            },
+            function(error) {
+                console.log("Error object:", error);
+                console.log("Error code:", error.code);
+                console.log("Error message:", error.message);
+            }
+        );
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+    }
+}
+
+// Run when page loads
+window.onload = getLocation;
+</script>
 {% endblock %}
