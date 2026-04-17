@@ -4,14 +4,14 @@
     <div class="body" id="explore-page">
         <h1 class="text" id="explore-text"> What are you in the mood for? </h1>
 
-        <form>
+        <form method="POST">
             <input name="cuisines" list="cuisines" placeholder="Select one or more cuisines">
                 <datalist id="cuisines">
                     {% for cuisine in cuisines %}
-                        <option value={{ cuisine }}> </option>
+                        <option value="{{ cuisine }}"> </option>
                     {% endfor %}
                 </datalist>
-            <input type="submit">
+            <button type="submit"> Enter </button>
         </form>
     </div>
 

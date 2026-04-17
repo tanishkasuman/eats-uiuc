@@ -25,17 +25,20 @@ def explore():
         cuisines = set();
         with open("static/data/restaurants.json", 'r') as file:
             data = json.load(file)
-            index = 0
-            while True:
-                try:
-                    cuisine = data[index]["cuisine"]
-                    cuisines.add(cuisine)
-                    index += 1
-                except:
-                    break
-        return render_template("explore.html", cuisines=cuisines)
+            for restaurant in data:
+                cuisine = restaurant["cuisine"]
+                cuisines.add(cuisine)
+            print(cuisines)
+        return render_template("explore_get.html", cuisines=cuisines)
     if request.method == "POST":
-        return render_template("explore.html", cuisines=cuisines)
+        cuisine = request.form.get("cuisines")
+        with open("static/data/restaurants.json", 'r') as file:
+            data = json.load(file)
+            restaurants = list()
+            for restaurant in data:
+                if (restaurant["cuisine"] == cuisine):
+                    restaurants.append(restaurant)
+        return render_template("explore_post.html", restaurants=restaurants)
         
     
 

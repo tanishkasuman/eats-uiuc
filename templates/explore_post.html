@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="body" id="explore-page">
+        <h1 class="text" id="explore-text"> Here's what we found: </h1>
+        {% for restaurant in restaurants %}
+            <p class="text"> Name: {{ restaurant["name"] }} </p>
+            <p class="text"> Location: {{ restaurant["locations"][0]["address"] }} </p>
+            <p class="text"> Rating: {{ restaurant["locations"][0]["rating"] }} </p>
+            <br>
+        {% endfor %}
+    </div>
+
+{% endblock %}
