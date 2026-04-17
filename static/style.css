@@ -6,31 +6,28 @@ body {
 
 #map {
     position: absolute;
-    top: 104px;
+    top: 130px;
     left: 0;
     width: 100vw;
-    height: calc(100vh - 104px);
+    height: calc(100vh - 130px);
 }
 
 #logo {
-  position: absolute;       
-  top: 3px;              
-  left: 12%;              
-  transform: translateX(-70%); 
   height: 100px;
-  z-index: 1000;    
+  flex-shrink: 0;         /* Prevents the logo from getting squished */
 }
 
 .heading {
   width: 100%;
-  padding: 1rem 2rem;
-  height: 70px; 
+  padding: 10px 2%;        /* Use % for sides so it shrinks on small screens */
+  min-height: 80px;        /* Let it grow if it needs to */
   background: white;
   border-bottom: 2px solid black;
   display: flex;
-  gap: 25px;
+  gap: 15px;               /* Reduced gap slightly for more room */
   justify-content: center; 
   align-items: center; 
+  flex-wrap: wrap;         /* This prevents buttons from leaving the screen */
 }
 
 /* pushes to side, could replace */
@@ -94,4 +91,14 @@ a.button {
 .text {
   text-align: center;
   font-family: "ABeeZee", sans-serif;
+}
+
+@media (max-width: 900px) {
+  .button {
+    font-size: 1rem;       /* Shrink text on smaller screens */
+    padding: 8px 20px;     /* Shrink button size */
+  }
+  .heading {
+    gap: 10px;             /* Tighten the space between items */
+  }
 }

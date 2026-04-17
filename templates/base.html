@@ -12,12 +12,12 @@
 </head>
 <body>
     <main>
-        <a href="{{ url_for('index') }}">
-            <img src="{{ url_for('static', filename='images/Eats@UIUC.png') }}"
-             alt="Logo" id="logo">
-        </a>
-
         <nav class="heading">
+            <a href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='images/Eats@UIUC.png') }}"
+                alt="Logo" id="logo">
+            </a>
+            
             <div class="spacer"></div>
             <a class="button" id="search" href="{{ url_for('search') }}">search</a>
             <a class="button" id="explore" href="{{ url_for('explore') }}">explore</a>
