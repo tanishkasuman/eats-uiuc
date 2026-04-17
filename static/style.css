@@ -6,28 +6,30 @@ body {
 
 #map {
     position: absolute;
-    top: 130px;
+    top: 125px;
     left: 0;
     width: 100vw;
-    height: calc(100vh - 130px);
-}
-
-#logo {
-  height: 100px;
-  flex-shrink: 0;         /* Prevents the logo from getting squished */
+    height: calc(100vh - 125px);
 }
 
 .heading {
   width: 100%;
-  padding: 10px 2%;        /* Use % for sides so it shrinks on small screens */
-  min-height: 80px;        /* Let it grow if it needs to */
+  padding: 5px 2rem;
+  min-height: 100px;
   background: white;
   border-bottom: 2px solid black;
+  
+  /* Flexbox settings */
   display: flex;
-  gap: 15px;               /* Reduced gap slightly for more room */
-  justify-content: center; 
-  align-items: center; 
-  flex-wrap: wrap;         /* This prevents buttons from leaving the screen */
+  align-items: center;    
+  justify-content: center; /* Keeps everything centered horizontally */
+  gap: 25px;              /* The "Safety Zone" that prevents overlapping */
+  flex-wrap: wrap;        /* CRITICAL: Wraps items to next line if screen is too small */
+}
+
+#logo {
+  height: 100px;
+  flex-shrink: 0; /* Ensures the logo never gets squished */
 }
 
 /* pushes to side, could replace */
@@ -91,14 +93,4 @@ a.button {
 .text {
   text-align: center;
   font-family: "ABeeZee", sans-serif;
-}
-
-@media (max-width: 900px) {
-  .button {
-    font-size: 1rem;       /* Shrink text on smaller screens */
-    padding: 8px 20px;     /* Shrink button size */
-  }
-  .heading {
-    gap: 10px;             /* Tighten the space between items */
-  }
 }
