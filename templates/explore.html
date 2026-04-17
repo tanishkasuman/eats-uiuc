@@ -1,8 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="body">
-    <h1>Explore</h1>
-    <p>Coming soon.</p>
-</div>
+    <div class="body" id="explore-page">
+        <h1 class="text" id="explore-text"> What are you in the mood for? </h1>
+
+        <form>
+            <input name="cuisines" list="cuisines" placeholder="Select one or more cuisines">
+                <datalist id="cuisines">
+                    {% for cuisine in cuisines %}
+                        <option value={{ cuisine }}> </option>
+                    {% endfor %}
+                </datalist>
+            <input type="submit">
+        </form>
+    </div>
+
 {% endblock %}

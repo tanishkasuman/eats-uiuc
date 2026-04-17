@@ -94,3 +94,11 @@ a.button {
   text-align: center;
   font-family: "ABeeZee", sans-serif;
 }
+
+#explore-page {
+  background: #e5a07f;
+}
+
+#explore-text {
+  color: white;
+}

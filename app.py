@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import json
 import random
 
@@ -19,9 +19,25 @@ def search():
     return render_template("search.html")
 
 
-@app.route("/explore")
+@app.route("/explore", methods=["GET", "POST"])
 def explore():
-    return render_template("explore.html")
+    if request.method == "GET":
+        cuisines = set();
+        with open("static/data/restaurants.json", 'r') as file:
+            data = json.load(file)
+            index = 0
+            while True:
+                try:
+                    cuisine = data[index]["cuisine"]
+                    cuisines.add(cuisine)
+                    index += 1
+                except:
+                    break
+        return render_template("explore.html", cuisines=cuisines)
+    if request.method == "POST":
+        return render_template("explore.html", cuisines=cuisines)
+        
+    
 
 
 @app.route("/contact")
