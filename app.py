@@ -37,7 +37,6 @@ def explore():
             for restaurant in data:
                 if (restaurant["cuisine"] == cuisine):
                     restaurants.append(restaurant)
-            # Assuming your list is named 'restaurants'
             sorted_restaurants = sorted(
                 restaurants, 
                 key=lambda x: x['locations'][0]['rating'], 

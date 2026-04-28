@@ -7,8 +7,8 @@
         <button type="submit" id="search-submit">Search</button>
     </form>
 
-    <div id="search-status"></div>
-    <div id="search-results"></div>
+    <div id="search-status" class="text"></div>
+    <div id="search-results" class="text"></div>
 </div>
 {% endblock %}
 
@@ -84,7 +84,7 @@
         html += "<b>Address: " + address + "</b><br>";
 
         if (id) {
-            html += '<a class="result-map-link" href="/?place=' + encodeURIComponent(id) + '">View on map</a>';
+            html += '<a class="result-map-link" href="/?place=' + encodeURIComponent(id) + '">View on map</a><br><br>';
         }
 
         html += "</div>";
