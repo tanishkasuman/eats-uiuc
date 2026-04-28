@@ -28,7 +28,6 @@ def explore():
             for restaurant in data:
                 cuisine = restaurant["cuisine"]
                 cuisines.add(cuisine)
-            print(cuisines)
         return render_template("explore_get.html", cuisines=cuisines)
     if request.method == "POST":
         cuisine = request.form.get("cuisines")
@@ -38,7 +37,13 @@ def explore():
             for restaurant in data:
                 if (restaurant["cuisine"] == cuisine):
                     restaurants.append(restaurant)
-        return render_template("explore_post.html", restaurants=restaurants)
+            # Assuming your list is named 'restaurants'
+            sorted_restaurants = sorted(
+                restaurants, 
+                key=lambda x: x['locations'][0]['rating'], 
+                reverse=True
+            )
+        return render_template("explore_post.html", restaurants=sorted_restaurants)
         
     
 
