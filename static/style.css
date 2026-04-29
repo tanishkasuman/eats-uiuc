@@ -9,13 +9,13 @@ body {
     position: absolute;
     top: 125px;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: calc(100vh - 125px);
 }
 
 .heading {
   width: 100%;
-  padding: 5px 2rem;
+  /*padding: 5px 2rem;*/
   min-height: 100px;
   background: white;
   border-bottom: 2px solid black;
@@ -74,9 +74,9 @@ body {
 }
 
 .body {
-  min-height: calc(100vh - 70px); 
-  padding: 0;                  
-  box-sizing: border-box; 
+  min-height: calc(100vh - 125px);
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .button:hover {
@@ -122,16 +122,22 @@ a.button {
 }
 
 #cuisine-selector {
-  flex: 1; /* This makes the input take up the remaining space */
+  flex: 1;
   padding: 15px 20px;
   background-color: white;
   border: 2px solid black;
   border-radius: 0;
-  
+
   font-family: sans-serif;
   font-size: 20px;
   color: black;
-  
+  cursor: pointer;
+
+  /* Hide native arrow so the custom one shows */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
   /* Custom Arrow */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -140,8 +146,9 @@ a.button {
   outline: none;
 }
 
-#explore-submit-button {
-  padding: 12px 25px; /* Slightly adjusted to match the input height better */
+#explore-submit-button,
+#search-submit {
+  padding: 12px 25px;
   background-color: #d8e3a3;
   color: white;
   border: none;
@@ -150,4 +157,166 @@ a.button {
   font-weight: bold;
   cursor: pointer;
   white-space: nowrap;
+}
+
+#search-input {
+  flex: 1;
+  padding: 15px 20px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 0;
+
+  font-family: sans-serif;
+  font-size: 20px;
+  color: black;
+  outline: none;
+}
+
+/* ── Contact page ─────────────────────────────────────── */
+
+.contact-card {
+  background: white;
+  border-radius: 16px;
+  padding: 36px 44px;
+  max-width: 520px;
+  margin: 50px auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.contact-title {
+  font-family: "ABeeZee", sans-serif;
+  font-size: 1.8rem;
+  color: #484755;
+  margin: 0 0 8px;
+}
+
+.contact-subtitle {
+  font-family: "ABeeZee", sans-serif;
+  font-size: 0.95rem;
+  color: #888;
+  margin: 0 0 28px;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.contact-label {
+  font-family: "ABeeZee", sans-serif;
+  font-size: 0.78rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #aaa;
+  margin-bottom: 3px;
+}
+
+.contact-value {
+  font-family: "ABeeZee", sans-serif;
+  font-size: 1rem;
+  color: #484755;
+}
+
+/* ── Leaflet overrides ────────────────────────────────── */
+
+.leaflet-popup-content {
+  font-family: "ABeeZee", sans-serif;
+  font-size: 0.9rem;
+  color: #484755;
+}
+
+/* Cluster colours — small: green, medium: coral, large: dark */
+.marker-cluster-small       { background-color: rgba(203, 223, 189, 0.55); }
+.marker-cluster-small div   { background-color: rgba(212, 224, 155, 0.85); }
+
+.marker-cluster-medium      { background-color: rgba(229, 160, 127, 0.55); }
+.marker-cluster-medium div  { background-color: rgba(241, 156, 121, 0.85); }
+
+.marker-cluster-large       { background-color: rgba(72, 71, 85, 0.45); }
+.marker-cluster-large div   { background-color: rgba(72, 71, 85, 0.70); }
+
+/* ── Result cards ─────────────────────────────────────── */
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.results-grid,
+#search-results {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 20px 20px;
+}
+
+.result-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+}
+
+.result-card.visible {
+  animation: fadeInDown 0.4s ease forwards;
+}
+
+.result-card h3 {
+  margin: 0 0 10px;
+  font-family: "ABeeZee", sans-serif;
+  font-size: 1.1rem;
+  color: #222;
+}
+
+.result-card p {
+  margin: 4px 0;
+  font-family: "ABeeZee", sans-serif;
+  font-size: 0.88rem;
+  color: #484755;
+}
+
+.result-card a.result-map-link {
+  font-family: "ABeeZee", sans-serif;
+  font-size: 0.88rem;
+  color: #F19C79;
+}
+
+/* "See More" button */
+.see-more-container {
+  text-align: center;
+  margin: 4px 0 40px;
+}
+
+.see-more-btn {
+  border: none;
+  padding: 12px 40px;
+  font-size: 1.2rem;
+  border-radius: 35px;
+  font-family: "ABeeZee", sans-serif;
+  cursor: pointer;
+  background-color: #CBDFBD;
+  color: #484755;
+  transition: opacity 0.3s, transform 0.2s;
+}
+
+.see-more-btn:hover {
+  opacity: 0.7;
+  transform: scale(1.05);
+}
+
+/* Surprise page — single centered card */
+.surprise-card-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.surprise-card-wrapper .result-card {
+  max-width: 420px;
+  width: 100%;
 }

@@ -1,5 +1,12 @@
 /* eslint-disable no-undef */
-var markers = L.markerClusterGroup();
+var markers = L.markerClusterGroup({ showCoverageOnHover: false });
+
+var customIcon = L.icon({
+    iconUrl: '/static/images/map_marker.svg',
+    iconSize: [28, 43],
+    iconAnchor: [14, 43],
+    popupAnchor: [0, -46]
+});
 var markerIndex = {};  // maps @id string → Leaflet marker instance
 
 var map = L.map('map', {
@@ -38,8 +45,8 @@ markers.on('popupopen', function(e) {
     if (id) { history.replaceState(null, '', '?place=' + encodeURIComponent(id)); }
 });
 
-// Clear URL when clicking empty map space
-map.on('click', function() {
+// Clear URL when a popup closes (X button or clicking away)
+map.on('popupclose', function() {
     history.replaceState(null, '', window.location.pathname);
 });
 
@@ -142,7 +149,7 @@ function onEachFeature(feature, layer) {
     var popupContent = buildPopupContent(feature);
 
     if (feature.geometry.type == "MultiPolygon" || feature.geometry.type == "Polygon") {
-        var centroidMarker = L.marker(layer.getBounds().getCenter()).bindPopup(popupContent);
+        var centroidMarker = L.marker(layer.getBounds().getCenter(), { icon: customIcon }).bindPopup(popupContent);
         markers.addLayer(centroidMarker);
         if (featureId) { markerIndex[featureId] = centroidMarker; }
     }
@@ -165,7 +172,10 @@ function handleDeepLink() {
 
 function fetchData(data) {
     var geoLayer = L.geoJSON(data, {
-        onEachFeature: onEachFeature
+        onEachFeature: onEachFeature,
+        pointToLayer: function(feature, latlng) {
+            return L.marker(latlng, { icon: customIcon });
+        }
     });
     //---DEBUG---
     //Print unique features

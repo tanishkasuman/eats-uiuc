@@ -6,14 +6,12 @@
 
         <div class="search-row">
             <form method="POST" class="explore-form">
-                <input name="cuisines" list="cuisines" id="cuisine-selector"
-                placeholder="Select a cuisine" readonly onclick="this.value=''" 
-                onfocus="this.value=''">
-                    <datalist id="cuisines">
-                        {% for cuisine in cuisines %}
-                            <option value="{{ cuisine }}"> </option>
-                        {% endfor %}
-                    </datalist>
+                <select name="cuisines" id="cuisine-selector">
+                    <option value="" disabled selected>Select a cuisine</option>
+                    {% for cuisine in cuisines %}
+                        <option value="{{ cuisine }}">{{ cuisine }}</option>
+                    {% endfor %}
+                </select>
                 <button type="submit" id="explore-submit-button"> Search </button>
             </form>
         </div>

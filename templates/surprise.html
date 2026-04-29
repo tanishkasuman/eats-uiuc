@@ -2,10 +2,22 @@
 
 {% block content %}
 <div class="body">
-    <p class="text"> We found something for you!</p>
-    <p class="text"> Name: {{ data["name"] }} </p>
-    <p class="text"> Cuisine: {{ data["cuisine"] }} </p>
-    <p class="text"> Location: {{ data["locations"][0]["address"] }} </p>
-    <p class="text"> Rating: {{ data["locations"][0]["rating"] }} </p>
+    <div class="surprise-card-wrapper">
+        {% set loc = data.locations[0] %}
+        <div class="result-card" id="surprise-card">
+            <h3>{{ data.name }}</h3>
+            <p><strong>Cuisine:</strong> {{ data.cuisine }}</p>
+            <p><strong>Address:</strong> {{ loc.address }}</p>
+            <p><strong>Rating:</strong> {{ loc.rating }} / 5 &nbsp;·&nbsp; {{ '$' * (loc.price if loc.price <= 4 else 4) }}</p>
+            <p><strong>Reviews:</strong> {{ loc.reviews }}</p>
+            {% if loc.phoneNumber %}<p><strong>Phone:</strong> {{ loc.phoneNumber }}</p>{% endif %}
+            {% if loc.website %}<p><strong>Website:</strong> <a href="http://{{ loc.website }}" target="_blank">{{ loc.website }}</a></p>{% endif %}
+        </div>
+    </div>
 </div>
+
+<script>
+    var card = document.getElementById('surprise-card');
+    card.classList.add('visible');
+</script>
 {% endblock %}
