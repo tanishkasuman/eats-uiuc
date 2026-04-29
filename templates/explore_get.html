@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="body" id="explore-page">
+        <h1 class="text" id="explore-text"> What are you in the mood for? </h1>
+
+        <div class="search-row">
+            <form method="POST" class="explore-form">
+                <select name="cuisines" id="cuisine-selector">
+                    <option value="" disabled selected>Select a cuisine</option>
+                    {% for cuisine in cuisines %}
+                        <option value="{{ cuisine }}">{{ cuisine }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" id="explore-submit-button"> Search </button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

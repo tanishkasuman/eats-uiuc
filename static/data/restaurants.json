@@ -5995,7 +5995,8 @@
                 "address": "618 E Daniel St., Champaign, Illinois",
                 "area": "Campustown",
                 "phoneNumber": "2173373300",
-                "price": 1
+                "price": 1,
+                "rating": 4.3
             }
         ],
         "name": "Kam's"

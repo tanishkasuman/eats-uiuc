@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="body" id="explore-page">
+    <div class="results-grid" id="results-grid">
+        {% for restaurant in restaurants %}
+        {% set loc = restaurant.locations[0] %}
+        <div class="result-card"{% if loop.index > 15 %} data-hidden="true"{% endif %}>
+            <h3>{{ restaurant.name }}</h3>
+            <p><strong>Cuisine:</strong> {{ restaurant.cuisine }}</p>
+            <p><strong>Address:</strong> {{ loc.address }}</p>
+            <p><strong>Rating:</strong> {{ loc.rating }} / 5 &nbsp;·&nbsp; {{ '$' * (loc.price if loc.price <= 4 else 4) }}</p>
+            <p><strong>Reviews:</strong> {{ loc.reviews }}</p>
+            {% if loc.phoneNumber %}<p><strong>Phone:</strong> {{ loc.phoneNumber }}</p>{% endif %}
+            {% if loc.website %}<p><strong>Website:</strong> <a href="http://{{ loc.website }}" target="_blank">{{ loc.website }}</a></p>{% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="see-more-container" id="see-more-container" style="display:none;">
+        <button class="see-more-btn" id="see-more-btn">See More</button>
+    </div>
+</div>
+
+<script>
+    (function () {
+        var allCards = Array.from(document.querySelectorAll('.result-card'));
+        var hiddenCards = allCards.filter(function (c) { return c.dataset.hidden; });
+        var visibleCards = allCards.filter(function (c) { return !c.dataset.hidden; });
+        var BATCH = 15;
+        var revealOffset = 0;
+
+        hiddenCards.forEach(function (c) { c.style.display = 'none'; });
+
+        visibleCards.forEach(function (card, i) {
+            card.style.animationDelay = (i * 0.06) + 's';
+            card.classList.add('visible');
+        });
+
+        var container = document.getElementById('see-more-container');
+        var btn = document.getElementById('see-more-btn');
+
+        if (hiddenCards.length > 0) {
+            container.style.display = '';
+        }
+
+        btn.addEventListener('click', function () {
+            var batch = hiddenCards.slice(revealOffset, revealOffset + BATCH);
+            batch.forEach(function (card, i) {
+                card.style.display = '';
+                card.style.animationDelay = (i * 0.06) + 's';
+                void card.offsetWidth;
+                card.classList.add('visible');
+            });
+            revealOffset += BATCH;
+            if (revealOffset >= hiddenCards.length) {
+                container.style.display = 'none';
+            }
+        });
+    })();
+</script>
+{% endblock %}
